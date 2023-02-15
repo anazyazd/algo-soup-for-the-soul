@@ -93,3 +93,32 @@ var levelOrder = function(root) {
     return result;
 };
 
+
+var levelOrder = function(root) {
+    const result = []
+
+    if(!root) {
+        return result
+    }
+
+    const queue = [root]
+    while (queue.length){
+        const queueLength = queue.length
+        const level = []
+
+        for(let i = 0; i < queueLength; i++){
+            const node = queue.shift()
+
+            if(node.left){
+                queue.push(node.left)
+            }
+            if(node.right){
+                queue.push(node.right)
+            }
+
+            level.push(node.val)
+        }
+        result.push(level)
+    }
+    return result
+};
