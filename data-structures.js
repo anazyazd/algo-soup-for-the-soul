@@ -149,7 +149,7 @@ var minDepth = function(root) {
     if (!root) return 0;
     if (!root.left) return minDepth(root.right) + 1;
     if (!root.right) return minDepth(root.left) + 1;
-    return Math.min(minDepth(root.left), minDepth(root.right));
+    return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
 };
 
 // ------ Add Two Numbers ------ //
@@ -175,6 +175,7 @@ function ListNode(val, next) {
 
 // input: l1 = [2,4,3], l2 = [5,6,4]
 // output: [7,0,8] because 342 + 465 = 807, everything is backwards
+
 var addTwoNumbers = function(l1, l2) {
     let head = null;
     let temp = null;
