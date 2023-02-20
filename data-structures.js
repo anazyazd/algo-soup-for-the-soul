@@ -206,3 +206,30 @@ var addTwoNumbers = function(l1, l2) {
     return head;
 };
 
+// ----- Valid Parentheses ----- //
+
+// Given a string containing just parentheses, determine if the input string is a valid.
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+
+// create a stack
+// check if character is a parenthese
+// if stack is empty, valid
+// if not empty, not valid
+var isValid = function(s) {
+    const stack = [];
+    const parentheses = '()[]{}';
+    for (bracket of s){
+        if (parentheses.includes(bracket)){
+            let index = parentheses.indexOf(bracket);
+            if (index % 2 === 0) stack.push(index + 1);
+            else if (stack.pop() !== index) return false;
+        }
+    }
+    return (stack.length === 0);
+};
+
+// console.log(isValid('()[]{}'))
