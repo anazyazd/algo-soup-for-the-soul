@@ -233,3 +233,67 @@ var isValid = function(s) {
 };
 
 // console.log(isValid('()[]{}'))
+
+// ------ Implement Stack using Queues ----- //
+
+// Create a last-in-first-out using two queues.
+// Should support all the functionality of a normal stack (push, pop, top, empty).
+
+var MyStack = function() {
+    this.qOne = [];
+    this.qTwo = [];
+};
+
+/** 
+ * @param {number} x
+ * @return {void}
+ */
+MyStack.prototype.push = function(x) {
+    this.qOne.push(x);
+};
+
+/**
+ * @return {number}
+ */
+MyStack.prototype.pop = function() {
+    while (this.qOne.length > 1){
+        this.qTwo.push(this.qOne.shift());
+    }
+    let top = this.qOne.shift();
+    let temp = this.qTwo;
+    this.qTwo = this.qOne;
+    this.qOne = temp;
+    return top;
+};
+
+/**
+ * @return {number}
+ */
+MyStack.prototype.top = function() {
+    while (this.qOne.length > 1){
+        this.qTwo.push(this.qOne.shift());
+    }
+    let top = this.qOne[0];
+    this.qTwo.push(this.qOne.shift());
+    let temp = this.qTwo;
+    this.qTwo = this.qOne;
+    this.qOne = temp;
+
+    return top;
+};
+
+/**
+ * @return {boolean}
+ */
+MyStack.prototype.empty = function() {
+    return this.qOne.length === 0;
+};
+
+/** 
+ * Your MyStack object will be instantiated and called as such:
+ * var obj = new MyStack()
+ * obj.push(x)
+ * var param_2 = obj.pop()
+ * var param_3 = obj.top()
+ * var param_4 = obj.empty()
+ */
